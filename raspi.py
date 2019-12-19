@@ -26,12 +26,9 @@ def date_function():
 
 #Fonction quii perlet de logger
 def log_function(msg):
-    date = date_function()
-    log= date + '--'+ msg
-
     #Ecrire dans un fichier log
-    fichier = open("data.txt", "r")
-    fichier.write(log)
+    fichier = open("data.txt", "a+")
+    fichier.write(msg)
     fichier.close()
 
 
@@ -96,7 +93,7 @@ class Arduino(Thread):
                     print(r.text)
                 else:
                     ## TODO PING REGULARLY
-                    log_function(chaine)
+                    log_function(val)
                     #return '{"status":"error"}'
 
 
@@ -104,7 +101,7 @@ class Arduino(Thread):
 
 TIME_OUT_READ = 1
 TIME_OUT_WRITE = 1
-port = Serial(port="/dev/ttyACM0", baudrate=9600, timeout=TIME_OUT_READ, writeTimeout=TIME_OUT_WRITE)
+port = Serial(port="/dev/ttyACM1", baudrate=9600, timeout=TIME_OUT_READ, writeTimeout=TIME_OUT_WRITE)
 
 a = Arduino(port)
 print(type(a).__name__)
