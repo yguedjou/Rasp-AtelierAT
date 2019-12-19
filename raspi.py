@@ -93,9 +93,10 @@ class Arduino(Thread):
                     print(e)
                 if r is not None and r.status_code is 200:
                    # return r.content
-                    log_function(chaine)
+                    print(r.text)
                 else:
                     ## TODO PING REGULARLY
+                    log_function(chaine)
                     #return '{"status":"error"}'
 
 
